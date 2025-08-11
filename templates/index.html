@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block content %}
+<h1>Books</h1>
+<a href="{{ url_for('create') }}" class="btn btn-primary mb-3">Add Book</a>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book.id }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>
+        <a
+          class="btn btn-secondary btn-sm"
+          href="{{ url_for('edit', id=book.id) }}"
+          >Edit</a
+        >
+        <form
+          action="{{ url_for('delete', id=book.id) }}"
+          method="post"
+          style="display: inline"
+        >
+          <button
+            class="btn btn-danger btn-sm"
+            onclick="return confirm('Delete this book?')"
+            type="submit"
+          >
+            Delete
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

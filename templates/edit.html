@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<h1>{{ 'Edit Book' if book else 'Add Book' }}</h1>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input
+      class="form-control"
+      name="title"
+      value="{{ book.title if book else '' }}"
+      required
+    />
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Author</label>
+    <input
+      class="form-control"
+      name="author"
+      value="{{ book.author if book else '' }}"
+      required
+    />
+  </div>
+  <button class="btn btn-success" type="submit">Save</button>
+  <a class="btn btn-link" href="{{ url_for('index') }}">Cancel</a>
+</form>
+{% endblock %}
